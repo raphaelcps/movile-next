@@ -1,8 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/theme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/theme_colorAccent</item>
+        <item name="android:textColor">@color/theme_textColor</item>
+        <item name="android:textColorPrimary">@color/theme_textColorPrimary</item>
+        <item name="android:windowBackground">@color/theme_windowBackground</item>
     </style>
 
+    <!-- TO BE CONTINUED -->
+
+    <style name="AppTheme.EpisodeDetails.Overlay" parent="AppTheme">
+
+    </style>
 </resources>
