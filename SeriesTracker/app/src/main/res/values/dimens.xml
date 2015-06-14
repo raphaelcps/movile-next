@@ -3,8 +3,8 @@
     <dimen name="activity_horizontal_margin">0dp</dimen>
     <dimen name="activity_vertical_margin">0dp</dimen>
 
-    <dimen name="title_vertical_margin">16dp</dimen>
-    <dimen name="title_horizontal_margin">16dp</dimen>
+    <dimen name="episode_details_title_left_margin">16dp</dimen>
+    <dimen name="episode_details_title_bottom_margin">16dp</dimen>
 
     <dimen name="default_spacing_small">4dp</dimen>
     <dimen name="default_spacing_medium">8dp</dimen>
