@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
@@ -11,9 +11,62 @@
         <item name="android:windowBackground">@color/theme_windowBackground</item>
     </style>
 
-    <!-- TO BE CONTINUED -->
+    <!-- Episode Details -->
+    <style name="AppTheme.EpisodeDetails" parent="AppTheme">
+    </style>
 
-    <style name="AppTheme.EpisodeDetails.Overlay" parent="AppTheme">
+    <style name="AppTheme.EpisodeDetails.screenshot" parent="AppTheme.EpisodeDetails">
+        <item name="android:layout_height">248dp</item>
+        <item name="android:scaleType">centerCrop</item>
 
     </style>
+
+    <style name="AppTheme.EpisodeDetails.screenshot_overlay" parent="AppTheme.EpisodeDetails">
+        <item name="android:layout_height">248dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/overlay</item>
+    </style>
+
+    <style name="AppTheme.EpisodeDetails.screenshot_title" parent="AppTheme.EpisodeDetails">
+        <item name="android:textColor">@color/default_textColor_first</item>
+        <item name="android:textSize">@dimen/default_textSize_veryLarge</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginBottom">@dimen/episode_details_title_bottom_margin</item>
+        <item name="android:layout_marginLeft">@dimen/episode_details_title_left_margin</item>
+    </style>
+
+    <style name="AppTheme.EpisodeDetails.cardView" parent="AppTheme.EpisodeDetails">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <!-- <item name="app:cardCornerRadius">4dp</item> -->
+    </style>
+
+    <style name="AppTheme.EpisodeDetails.cardView_exhibition" parent="AppTheme.EpisodeDetails.cardView">
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="AppTheme.EpisodeDetails.cardView_summary" parent="AppTheme.EpisodeDetails.cardView">
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="AppTheme.EpisodeDetails.exhibition_clock" parent="AppTheme.EpisodeDetails">
+        <item name="android:layout_width">27dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <!--
+    <style name="AppTheme.EpisodeDetails.exhibition_time" parent="AppTheme.EpisodeDetails">
+        android:layout_marginLeft="18dp"
+        android:textSize="@dimen/default_textSize_medium"
+        android:textColor="@color/default_textColor_second"
+
+        android:layout_gravity="center_vertical"
+        <item name="android:layout_marginLeft">18dp</item>
+        <item name="textS"
+    </style> -->
+
 </resources>

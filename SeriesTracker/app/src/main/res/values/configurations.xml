@@ -4,7 +4,7 @@
     <string name="api_url_base">https://api-v2launch.trakt.tv</string>
     <string name="api_url_episode">/shows/{0}/seasons/{1}/episodes/{2}</string>
     <string name="api_version">2</string>
-    <string name="api_key">API_KEY</string>
+    <string name="api_key">336b052b415a85d7431ead0196a463b822f17e3f7ee4ea2cfb47c9306fe5849a</string>
     <integer name="api_timeout_read">10000</integer>
     <integer name="api_timeout_connect">15000</integer>
 
