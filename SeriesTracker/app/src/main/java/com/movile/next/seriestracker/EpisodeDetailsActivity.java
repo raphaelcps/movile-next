@@ -1,5 +1,6 @@
 package com.movile.next.seriestracker;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,13 +8,15 @@ import android.view.MenuItem;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.movile.next.seriestracker.Util.FormatUtil;
+import com.movile.next.seriestracker.asynctask.IRemoteImageLoader;
+import com.movile.next.seriestracker.asynctask.RemoteImageAsyncTask;
+import com.movile.next.seriestracker.util.FormatUtil;
 import com.movile.next.seriestracker.asynctask.EpisodeFetcherAsyncTask;
 import com.movile.next.seriestracker.asynctask.IEpisodeLoader;
 import com.movile.next.seriestracker.model.Episode;
 
 
-public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisodeLoader {
+public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisodeLoader, IRemoteImageLoader {
 
     public final static String TAG = "EpisodeDetailsActivity";
 
@@ -112,5 +115,16 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisod
 
         TextView summary = (TextView)findViewById(R.id.episode_details_summary);
         summary.setText(episode.overview());
+
+        // Image
+        String url = episode.images().screenshot().get("full");
+        if (url != null) {
+            new RemoteImageAsyncTask(this).execute(url);
+        }
+    }
+
+    @Override
+    public void onImageLoaded(Bitmap image) {
+
     }
 }

@@ -19,7 +19,8 @@ public class Episode {
     private String firstAired;
     @SerializedName("available_translations")
     private String[] translations;
-    //private MediaStore.Images images;
+    // TODO: what is this MediaStore? private MediaStore.Images images;
+    private Images images;
 
     public Long season() {
         return season;
@@ -57,8 +58,7 @@ public class Episode {
         return translations;
     }
 
-    /*TODO: return images
     public Images images() {
         return images;
-    }*/
+    }
 }

@@ -11,10 +11,12 @@ public class EpisodeLoaderCallback implements LoaderManager.LoaderCallbacks<Epis
 
     private Context context;
     private  String seriesId;
+    IEpisodeLoader handler;
 
-    public EpisodeLoaderCallback(Context context, String seriesId) {
+    public EpisodeLoaderCallback(Context context, String seriesId, IEpisodeLoader handler) {
         this.context = context;
         this.seriesId = seriesId;
+        this.handler = handler;
     }
 
     @Override
@@ -24,7 +26,9 @@ public class EpisodeLoaderCallback implements LoaderManager.LoaderCallbacks<Epis
 
     @Override
     public void onLoadFinished(Loader<Episode> loader, Episode data) {
-
+        //if (data != null) {
+        this.handler.onEpisodeLoaded(data);
+        //}
     }
 
     @Override

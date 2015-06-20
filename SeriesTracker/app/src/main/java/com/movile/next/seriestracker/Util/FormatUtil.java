@@ -1,4 +1,4 @@
-package com.movile.next.seriestracker.Util;
+package com.movile.next.seriestracker.util;
 
 /**
  * Created by movile on 13/06/15.
