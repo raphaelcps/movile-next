@@ -1,31 +1,42 @@
 package com.movile.next.seriestracker;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.movile.next.seriestracker.asynctask.IRemoteImageLoader;
-import com.movile.next.seriestracker.asynctask.RemoteImageAsyncTask;
-import com.movile.next.seriestracker.util.FormatUtil;
-import com.movile.next.seriestracker.asynctask.EpisodeFetcherAsyncTask;
-import com.movile.next.seriestracker.asynctask.IEpisodeLoader;
+import com.bumptech.glide.Glide;
 import com.movile.next.seriestracker.model.Episode;
+import com.movile.next.seriestracker.model.Images;
+import com.movile.next.seriestracker.presenter.EpisodeDetailsPresenter;
+import com.movile.next.seriestracker.util.FormatUtil;
+import com.movile.next.seriestracker.view.EpisodeDetailsView;
 
 
-public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisodeLoader, IRemoteImageLoader {
+public class EpisodeDetailsActivity extends ActionBarActivity implements EpisodeDetailsView {
 
-    public final static String TAG = "EpisodeDetailsActivity";
+    public final static String TAG = EpisodeDetailsActivity.class.getSimpleName();
+    private EpisodeDetailsPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.episode_details_activity);
 
-        new EpisodeFetcherAsyncTask(this, this).execute();
+        /*
+        //new EpisodeFetcherAsyncTask(this, this).execute();
+        getSupportLoaderManager().initLoader(
+                0, null, new EpisodeLoaderCallback(this, "under-the-dome", this)
+        ).forceLoad(); */
+
+        // new EpisodeRemoteClient(ApiConfiguration.URL_BASE, this).getEpisodeDetails("under-the-dome", 1l, 1l);
+        mPresenter = new EpisodeDetailsPresenter(this);
+
+        mPresenter.getEpisodeDetails("under-the-dome", 1l, 2l);
 
         Log.d(TAG, "onCreate()");
     }
@@ -58,7 +69,6 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisod
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
-
     }
 
     @Override
@@ -79,8 +89,6 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisod
         super.onRestart();
         Log.d(TAG, "onRestart()");
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,9 +113,19 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisod
         return super.onOptionsItemSelected(item);
     }
 
+    private void loadImage(String url) {
+        ImageView imageView = (ImageView)findViewById(R.id.episode_details_screenshot);
+        Glide.with(this)
+            .load(url)
+            .placeholder(R.drawable.highlight_placeholder)
+            .centerCrop()
+            .into(imageView);
+    }
+
     @Override
-    public void onEpisodeLoaded(Episode episode) {
+    public void loadEpisode(Episode episode) {
         TextView title = (TextView)findViewById(R.id.episode_details_title);
+
         title.setText(episode.title());
 
         TextView date = (TextView)findViewById(R.id.episode_details_exhibition_time);
@@ -117,14 +135,17 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements IEpisod
         summary.setText(episode.overview());
 
         // Image
-        String url = episode.images().screenshot().get("full");
+        String url = episode.images().screenshot().get(Images.ImageSize.THUMB);
         if (url != null) {
-            new RemoteImageAsyncTask(this).execute(url);
+            //new RemoteImageAsyncTask(this).execute(url);
+            loadImage(url);
         }
     }
 
     @Override
-    public void onImageLoaded(Bitmap image) {
-
+    public void loadImage(Bitmap image) {
+        ImageView imageView = (ImageView)findViewById(R.id.episode_details_screenshot);
+        imageView.setImageBitmap(image);
     }
+
 }

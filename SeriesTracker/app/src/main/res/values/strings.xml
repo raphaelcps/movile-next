@@ -7,5 +7,6 @@
     <!-- Base Navigation -->
     <string name="base_navigation_drawer_open">Open</string>
     <string name="base_navigation_drawer_close">Close</string>
+    <string name="title_activity_season_details">SeasonDetailsActivity</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.movile.next.seriestracker.asynctask;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 

@@ -63,14 +63,9 @@
                 <ImageView
                     style="@style/AppTheme.EpisodeDetails.exhibition_clock"
                     android:src="@drawable/episode_details_clock"/>
-                    <!-- style="@style/AppTheme.EpisodeDetails.exhibition_time" -->
                 <TextView android:text="2015-04-22 at 21:00"
                     android:id="@+id/episode_details_exhibition_time"
-                    android:layout_marginLeft="18dp"
-                    android:textSize="@dimen/default_textSize_medium"
-                    android:textColor="@color/default_textColor_second"
-
-                    android:layout_gravity="center_vertical"
+                    style="@style/AppTheme.EpisodeDetails.exhibition_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -89,13 +84,6 @@
                 <TextView android:text="SUMMARY"
                     android:id="@+id/episode_details_summary_title"
                     android:layout_width="wrap_content"
-                    android:textColor="@color/default_textColor_third"
-                    android:textSize="@dimen/default_textSize_verySmall"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16.5dp"
-                    android:layout_marginBottom="8.5dp"
-
                     android:layout_height="wrap_content" />
                     <!-- style="@style/AppTheme.EpisodeDetails.horizontal_line" -->
                 <View android:background="@color/default_background_third"
