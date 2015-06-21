@@ -1,7 +1,9 @@
 package com.movile.next.seriestracker;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -30,6 +32,9 @@ public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDe
 
     private void setupContent() {
         ListView view = (ListView)findViewById(R.id.season_details_list_view);
+
+        view.addHeaderView(LayoutInflater.from(this).inflate(R.layout.season_details_list_header, view, false));
+
         adapter = new SeasonDetailsAdapter(this, this);
         view.setAdapter(adapter);
         presenter.getSeasonDetails("under-the-dome", 1l);
@@ -60,5 +65,15 @@ public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDe
     @Override
     public void loadSeason(List<Episode> episodes) {
         adapter.addAll(episodes);
+    }
+
+    @Override
+    public void loadEpisode(Episode item) {
+        Intent intent = new Intent(this, EpisodeDetailsActivity.class);
+        intent.putExtra(EpisodeDetailsActivity.EXTRA_SHOW, "under-the-dome");
+        intent.putExtra(EpisodeDetailsActivity.EXTRA_SEASON, 1l);
+        intent.putExtra(EpisodeDetailsActivity.EXTRA_EPISODE, item.number());
+
+        startActivity(intent);
     }
 }

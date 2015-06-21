@@ -80,11 +80,11 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <!-- style="@style/AppTheme.EpisodeDetails.summary_title" -->
                 <TextView android:text="SUMMARY"
                     android:id="@+id/episode_details_summary_title"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.EpisodeDetails.summary_title" />
                     <!-- style="@style/AppTheme.EpisodeDetails.horizontal_line" -->
                 <View android:background="@color/default_background_third"
                     android:id="@+id/episode_details_horizontal_line"

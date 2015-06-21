@@ -19,8 +19,26 @@ import com.movile.next.seriestracker.view.EpisodeDetailsView;
 
 public class EpisodeDetailsActivity extends ActionBarActivity implements EpisodeDetailsView {
 
+    public final static String EXTRA_SHOW = "show";
+    public final static String EXTRA_SEASON = "season";
+    public final static String EXTRA_EPISODE = "episode";
+
+    private String show;
+    private Long season;
+    private Long episode;
+
     public final static String TAG = EpisodeDetailsActivity.class.getSimpleName();
     private EpisodeDetailsPresenter mPresenter;
+
+    private void loadParameters() {
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            show = extras.getString(EXTRA_SHOW);
+            season = extras.getLong(EXTRA_SEASON);
+            episode = extras.getLong(EXTRA_EPISODE);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +52,12 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements Episode
         ).forceLoad(); */
 
         // new EpisodeRemoteClient(ApiConfiguration.URL_BASE, this).getEpisodeDetails("under-the-dome", 1l, 1l);
+
+        loadParameters();
         mPresenter = new EpisodeDetailsPresenter(this);
 
-        mPresenter.getEpisodeDetails("under-the-dome", 1l, 2l);
+        mPresenter.getEpisodeDetails(show, season, episode);
+
 
         Log.d(TAG, "onCreate()");
     }

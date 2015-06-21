@@ -75,10 +75,22 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
     }
 
     private void populateViewFromHolder(ViewHolder holder, int position, int type) {
-        Episode item = getItem(position);
+        final Episode item = getItem(position);
         if (item != null) {
-            holder.getEpisodeNumber().setText(Long.toString(item.number()));
+            Long num = item.number();
+            String prefix = "E0";
+            if (num >= 10) {
+                prefix = "E";
+            }
+            holder.getEpisodeNumber().setText(prefix + Long.toString(item.number()));
             holder.getTitle().setText(item.title());
+
+            holder.getView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.loadEpisode(item);
+                }
+            });
         }
     }
 
@@ -86,7 +98,7 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
     public int getItemViewType(int position) { return 0; }
 
     public static class ViewHolder {
-        View self;
+        View view;
         TextView episodeNumber;
         TextView title;
 
@@ -98,11 +110,16 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
             return title;
         }
 
+        public View getView() {
+            return view;
+        }
+
         public ViewHolder(View view) {
-            self = view;
+            this.view = view;
             episodeNumber = (TextView)view.findViewById(R.id.season_details_list_item_episode_number);
             title = (TextView)view.findViewById(R.id.season_details_list_item_episode_title);
         }
+
 
     }
 

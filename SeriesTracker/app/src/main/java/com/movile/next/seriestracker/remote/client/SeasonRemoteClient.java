@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.remote.service.ISeasonRemoteService;
+import com.movile.next.seriestracker.util.FormatUtil;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit.Callback;
@@ -32,6 +34,12 @@ public class SeasonRemoteClient {
         service.getSeasonDetails(show, season, new Callback<List<Episode>>() {
             @Override
             public void success(List<Episode> episodes, Response response) {
+
+                //try {
+                    Log.d("rest", response.getUrl());
+                //} catch (IOException e) {
+                  //  e.printStackTrace();
+                //}
                 handler.onSeasonLoaded(episodes);
             }
 
