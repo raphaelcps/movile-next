@@ -4,14 +4,34 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.movile.next.seriestracker.adapters.SeasonDetailsAdapter;
+import com.movile.next.seriestracker.adapters.SeasonDetailsClickListener;
+import com.movile.next.seriestracker.model.Episode;
+import com.movile.next.seriestracker.presenter.SeasonDetailsPresenter;
+import com.movile.next.seriestracker.view.SeasonDetailsView;
+
+import java.util.List;
 
 
-public class SeasonDetailsActivity extends ActionBarActivity {
+public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDetailsView, SeasonDetailsClickListener {
+
+    SeasonDetailsPresenter presenter;
+    SeasonDetailsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.season_details_activity);
+        presenter = new SeasonDetailsPresenter(this, this);
+        setupContent();
+    }
+
+    private void setupContent() {
+        ListView view = (ListView)findViewById(R.id.season_details_list_view);
+        adapter = new SeasonDetailsAdapter(this, this);
+        view.setAdapter(adapter);
     }
 
     @Override
@@ -34,5 +54,10 @@ public class SeasonDetailsActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void loadSeason(List<Episode> episodes) {
+
     }
 }
