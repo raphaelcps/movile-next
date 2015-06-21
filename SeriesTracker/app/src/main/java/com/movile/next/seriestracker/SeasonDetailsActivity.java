@@ -14,10 +14,10 @@ import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.presenter.SeasonDetailsPresenter;
 import com.movile.next.seriestracker.view.SeasonDetailsView;
 
+import java.text.MessageFormat;
 import java.util.List;
 
-
-public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDetailsView, SeasonDetailsClickListener {
+public class SeasonDetailsActivity extends com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity implements SeasonDetailsView, SeasonDetailsClickListener {
 
     SeasonDetailsPresenter presenter;
     SeasonDetailsAdapter adapter;
@@ -30,11 +30,18 @@ public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDe
         setupContent();
     }
 
+    private void loadToolbarTitle(String show, Long season) {
+        getSupportActionBar().setTitle(MessageFormat.format("S{0} - {1}", season, show));
+    }
+
     private void setupContent() {
+        showLoading();
+
+        configureToolbar();
+        loadToolbarTitle("Under The Dome", 1l);
+
         ListView view = (ListView)findViewById(R.id.season_details_list_view);
-
         view.addHeaderView(LayoutInflater.from(this).inflate(R.layout.season_details_list_header, view, false));
-
         adapter = new SeasonDetailsAdapter(this, this);
         view.setAdapter(adapter);
         presenter.getSeasonDetails("under-the-dome", 1l);
@@ -65,6 +72,7 @@ public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDe
     @Override
     public void loadSeason(List<Episode> episodes) {
         adapter.addAll(episodes);
+        hideLoading();
     }
 
     @Override

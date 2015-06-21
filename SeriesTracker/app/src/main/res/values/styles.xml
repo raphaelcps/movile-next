@@ -11,6 +11,8 @@
         <item name="android:windowBackground">@color/theme_windowBackground</item>
     </style>
 
+    <style name="AppTheme.Base"></style>
+
     <!-- Episode Details -->
     <style name="AppTheme.EpisodeDetails" parent="AppTheme">
     </style>
@@ -72,6 +74,34 @@
         <item name="android:layout_marginRight">16dip</item>
         <item name="android:layout_marginTop">16.5dip</item>
         <item name="android:layout_marginBottom">8.5dip</item>
+    </style>
+
+    <!-- Base Navigation -->
+    <style name="AppTheme.Base.Navigation"></style>
+
+    <style name="AppTheme.Base.Navigation.Toolbar">
+        <item name="android:layout_height">@dimen/base_navigation_toolbar_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:minHeight">@dimen/base_navigation_toolbar_minHeight</item>
+        <item name="android:background">@color/base_navigation_toolbar_background</item>
+    </style>
+
+    <style name="AppTheme.Base.Navigation.Toolbar.Transparent">
+        <item name="android:background">@color/base_navigation_toolbar_transparent_background</item>
+    </style>
+
+    <!-- Base Loading -->
+    <style name="AppTheme.Base.Loading"></style>
+
+    <style name="AppTheme.Base.Loading.Container">
+        <item name="android:background">@color/base_loading_container_background</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="AppTheme.Base.Loading.Progress">
+        <item name="android:layout_width">@dimen/base_loading_progress_size</item>
+        <item name="android:layout_height">@dimen/base_loading_progress_size</item>
+        <item name="android:indeterminate">true</item>
     </style>
 
 </resources>

@@ -10,14 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.model.Images;
 import com.movile.next.seriestracker.presenter.EpisodeDetailsPresenter;
 import com.movile.next.seriestracker.util.FormatUtil;
 import com.movile.next.seriestracker.view.EpisodeDetailsView;
 
+import java.text.MessageFormat;
 
-public class EpisodeDetailsActivity extends ActionBarActivity implements EpisodeDetailsView {
+
+public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implements EpisodeDetailsView {
 
     public final static String EXTRA_SHOW = "show";
     public final static String EXTRA_SEASON = "season";
@@ -44,6 +47,7 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements Episode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.episode_details_activity);
+        showLoading();
 
         /*
         //new EpisodeFetcherAsyncTask(this, this).execute();
@@ -54,12 +58,19 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements Episode
         // new EpisodeRemoteClient(ApiConfiguration.URL_BASE, this).getEpisodeDetails("under-the-dome", 1l, 1l);
 
         loadParameters();
+
+        configureToolbar();
+        loadToolbarTitle();
+
         mPresenter = new EpisodeDetailsPresenter(this);
 
         mPresenter.getEpisodeDetails(show, season, episode);
 
-
         Log.d(TAG, "onCreate()");
+    }
+
+    private void loadToolbarTitle() {
+        getSupportActionBar().setTitle(MessageFormat.format("S{0}E{1} - {2}", season, episode, show));
     }
 
     @Override
@@ -161,6 +172,8 @@ public class EpisodeDetailsActivity extends ActionBarActivity implements Episode
             //new RemoteImageAsyncTask(this).execute(url);
             loadImage(url);
         }
+
+        hideLoading();
     }
 
     @Override

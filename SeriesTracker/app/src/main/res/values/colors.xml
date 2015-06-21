@@ -23,6 +23,11 @@
     <color name="theme_textColorPrimary">@color/default_textColor_first</color>
     <color name="theme_windowBackground">@color/default_background_first</color>
 
-    <!-- TO BE CONTINUED -->
+    <!-- Base Navigation Toolbar -->
+    <color name="base_navigation_toolbar_background">@color/default_color_first</color>
+    <color name="base_navigation_toolbar_transparent_background">#88333333</color>
+
+    <!-- Base Loading -->
+    <color name="base_loading_container_background">#99333333</color>
 
 </resources>

@@ -46,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/AppTheme.EpisodeDetails.screenshot_title"
-                android:text="The House of Black and White"
                 android:layout_alignBottom="@id/episode_details_screenshot"
                 />
             <!-- Cards -->
@@ -96,7 +95,7 @@
 
                     android:layout_centerVertical="true" />
                     <!-- style="@style/AppTheme.EpisodeDetails.summary_content" -->
-                <TextView android:text="SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY SUMMARY "
+                <TextView
                     android:id="@+id/episode_details_summary"
                     android:textColor="@color/default_textColor_fourth"
                     android:textSize="@dimen/default_textSize_medium"
