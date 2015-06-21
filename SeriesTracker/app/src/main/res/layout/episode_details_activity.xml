@@ -62,7 +62,7 @@
                 <ImageView
                     style="@style/AppTheme.EpisodeDetails.exhibition_clock"
                     android:src="@drawable/episode_details_clock"/>
-                <TextView android:text="2015-04-22 at 21:00"
+                <TextView android:text="2000-01-01 at 00:00"
                     android:id="@+id/episode_details_exhibition_time"
                     style="@style/AppTheme.EpisodeDetails.exhibition_time"
                     android:layout_width="wrap_content"
