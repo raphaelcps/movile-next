@@ -1,16 +1,17 @@
-package com.movile.next.seriestracker.adapters;
+package com.movile.next.seriestracker.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.model.Episode;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
     }
 
     public Episode getItem(int position) {
-        if (episodes != null || episodes.size() <= position) {
+        if (episodes == null || episodes.size() <= position) {
             return null;
         }
         return episodes.get(position);
@@ -99,11 +100,23 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
 
         public ViewHolder(View view) {
             self = view;
+            episodeNumber = (TextView)view.findViewById(R.id.season_details_list_item_episode_number);
+            title = (TextView)view.findViewById(R.id.season_details_list_item_episode_title);
         }
 
     }
 
 
+    @Override
+    public void addAll(Collection<? extends Episode> collection) {
+        super.addAll(collection);
 
+        if (this.episodes == null) {
+            this.episodes = new ArrayList<Episode>(collection);
+        } else {
+            this.episodes.addAll(collection);
+        }
 
+        this.notifyDataSetChanged();
+    }
 }

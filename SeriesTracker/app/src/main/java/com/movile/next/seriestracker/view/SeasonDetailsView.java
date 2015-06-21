@@ -10,5 +10,5 @@ import java.util.List;
 public interface SeasonDetailsView
 {
 
-    public void loadSeason(List<Episode> episodes);
+    void loadSeason(List<Episode> episodes);
 }

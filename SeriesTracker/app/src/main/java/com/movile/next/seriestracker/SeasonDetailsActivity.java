@@ -6,8 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.movile.next.seriestracker.adapters.SeasonDetailsAdapter;
-import com.movile.next.seriestracker.adapters.SeasonDetailsClickListener;
+import com.movile.next.seriestracker.adapter.SeasonDetailsAdapter;
+import com.movile.next.seriestracker.adapter.SeasonDetailsClickListener;
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.presenter.SeasonDetailsPresenter;
 import com.movile.next.seriestracker.view.SeasonDetailsView;
@@ -32,6 +32,7 @@ public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDe
         ListView view = (ListView)findViewById(R.id.season_details_list_view);
         adapter = new SeasonDetailsAdapter(this, this);
         view.setAdapter(adapter);
+        presenter.getSeasonDetails("under-the-dome", 1l);
     }
 
     @Override
@@ -58,6 +59,6 @@ public class SeasonDetailsActivity extends ActionBarActivity implements SeasonDe
 
     @Override
     public void loadSeason(List<Episode> episodes) {
-
+        adapter.addAll(episodes);
     }
 }
