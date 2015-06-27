@@ -57,7 +57,7 @@ public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.seasons_recycler_view);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(inflater.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mAdapter = new SeasonsRecyclerAdapter(this);
+        mAdapter = new SeasonsRecyclerAdapter(inflater.getContext(), this);
         recyclerView.setAdapter(mAdapter);
 
         mPresenter.getSeasonsDetails(show.ids().slug());

@@ -1,5 +1,6 @@
 package com.movile.next.seriestracker.adapter;
 
+import android.content.Context;
 import android.support.v4.media.session.IMediaControllerCallback;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.fragment.ShowSeasonFragment;
+import com.movile.next.seriestracker.model.Images;
 import com.movile.next.seriestracker.model.Season;
 
 import java.util.ArrayList;
@@ -58,10 +61,12 @@ public class SeasonsRecyclerAdapter extends RecyclerView.Adapter<SeasonsRecycler
 
     OnSeasonClickListener mListener;
     List<Season> mSeasons;
+    Context mContext;
 
-    public SeasonsRecyclerAdapter(OnSeasonClickListener listener) {
+    public SeasonsRecyclerAdapter(Context context, OnSeasonClickListener listener) {
         super();
         mListener = listener;
+        mContext = context;
     }
 
     public void populateSeasons(List<Season> seasons) {
@@ -76,7 +81,11 @@ public class SeasonsRecyclerAdapter extends RecyclerView.Adapter<SeasonsRecycler
     }
 
     private void loadImage(ImageView imageView, String url) {
-
+        Glide.with(mContext)
+                .load(url)
+                .placeholder(R.drawable.highlight_placeholder)
+                .centerCrop()
+                .into(imageView);
     }
 
     @Override
@@ -85,6 +94,8 @@ public class SeasonsRecyclerAdapter extends RecyclerView.Adapter<SeasonsRecycler
 
         holder.getTile().setText(String.format("Season %d", season.number()));
         holder.getEpisodes().setText(String.format("%d Episodes", season.episodeCount()));
+
+        loadImage(holder.getImage(), season.images().poster().get(Images.ImageSize.THUMB));
 
     }
 
