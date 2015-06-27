@@ -104,4 +104,58 @@
         <item name="android:indeterminate">true</item>
     </style>
 
+    <!-- Show Details-->
+    <style name="AppTheme.ShowDetails" parent="AppTheme">
+    </style>
+
+    <style name="AppTheme.ShowDetails.screenshot" parent="AppTheme.ShowDetails">
+        <item name="android:layout_height">248dp</item>
+        <item name="android:scaleType">centerCrop</item>
+
+    </style>
+
+    <style name="AppTheme.ShowDetails.score.card" parent="AppTheme.ShowDetails">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="cardCornerRadius">4dp</item>
+    </style>
+
+    <style name="AppTheme.ShowDetails.score" parent="AppTheme.ShowDetails">
+        <item name="android:textColor">@color/default_textColor_first</item>
+        <item name="android:textSize">@dimen/default_textSize_large</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/default_color_second</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.ShowDetails.screenshot_overlay" parent="AppTheme.ShowDetails">
+        <item name="android:layout_height">248dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/overlay</item>
+    </style>
+
+    <!-- Season Details-->
+    <style name="AppTheme.SeasonDetails" parent="AppTheme">
+    </style>
+
+    <style name="AppTheme.SeasonDetails.score.card" parent="AppTheme.SeasonDetails">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="cardCornerRadius">4dp</item>
+    </style>
+
+    <style name="AppTheme.SeasonDetails.score" parent="AppTheme.SeasonDetails">
+        <item name="android:textColor">@color/default_textColor_first</item>
+        <item name="android:textSize">@dimen/default_textSize_large</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/default_color_second</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

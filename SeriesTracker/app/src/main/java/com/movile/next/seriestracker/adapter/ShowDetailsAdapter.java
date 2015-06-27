@@ -28,9 +28,9 @@ public class ShowDetailsAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case PAGE_INFO:
-                return "Info";
+                return "INFO";
             case PAGE_SEASONS:
-                return "Seasons";
+                return "SEASONS";
         }
         return "No Title";
     }

@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.movile.next.seriestracker.adapter.SeasonDetailsAdapter;
 import com.movile.next.seriestracker.adapter.SeasonDetailsClickListener;
 import com.movile.next.seriestracker.model.Episode;
+import com.movile.next.seriestracker.model.Images;
 import com.movile.next.seriestracker.presenter.SeasonDetailsPresenter;
 import com.movile.next.seriestracker.view.SeasonDetailsView;
 
@@ -69,9 +73,40 @@ public class SeasonDetailsActivity extends com.movile.next.seriestracker.activit
         return super.onOptionsItemSelected(item);
     }
 
+    private void loadImages(String header, String thumb) {
+        ImageView imageView = (ImageView)findViewById(R.id.season_details_list_header_image);
+        Glide.with(this)
+                .load(header)
+                .placeholder(R.drawable.highlight_placeholder)
+                .centerCrop()
+                .into(imageView);
+
+        imageView = (ImageView)findViewById(R.id.season_details_thumb);
+        Glide.with(this)
+                .load(thumb)
+                .placeholder(R.drawable.highlight_placeholder)
+                .centerCrop()
+                .into(imageView);
+    }
+
     @Override
     public void loadSeason(List<Episode> episodes) {
         adapter.addAll(episodes);
+
+        // TODO: unmock
+        // set score
+        ((TextView) findViewById(R.id.season_details_score)).setText(String.format("%.1f", 9.5));
+
+        // set year
+        ((TextView) findViewById(R.id.season_details_year)).setText(Long.toString(2008));
+
+        // set image
+        String header = "https://walter.trakt.us/images/shows/000/001/388/thumbs/original/2fd220ab54.jpg";
+        String thumb = "https://walter.trakt.us/images/shows/000/001/388/posters/thumb/fa39b59954.jpg";
+        if (header != null || thumb != null) {
+            loadImages(header, thumb);
+        }
+
         hideLoading();
     }
 

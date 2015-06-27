@@ -39,6 +39,8 @@ public class ShowRemoteClient {
         service.getShowInfo(show, new Callback<Show>() {
             @Override
             public void success(Show show, Response response) {
+
+                Log.e(TAG, "URL: " + response.getUrl());
                 handler.onShowLoaded(show);
             }
 
