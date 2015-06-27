@@ -182,4 +182,10 @@
         <item name="android:clipToPadding">false</item>
     </style>
 
+    <style name="AppTheme.PopularShows.show" parent="AppTheme.PopularShows">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">114dp</item>
+        <item name="android:layout_height">170dp</item>
+    </style>
+
 </resources>

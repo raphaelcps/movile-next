@@ -89,7 +89,7 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         ImageView imageView = (ImageView)findViewById(R.id.show_details_screenshot);
         Glide.with(this)
                 .load(url)
-                .placeholder(R.drawable.highlight_placeholder)
+                .placeholder(R.drawable.show_item_placeholder)
                 .centerCrop()
                 .into(imageView);
     }
