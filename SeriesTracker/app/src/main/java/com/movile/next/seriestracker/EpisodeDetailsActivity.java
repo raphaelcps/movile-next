@@ -23,10 +23,12 @@ import java.text.MessageFormat;
 public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implements EpisodeDetailsView {
 
     public final static String EXTRA_SHOW = "show";
+    public final static String EXTRA_SHOW_NAME = "show_name";
     public final static String EXTRA_SEASON = "season";
     public final static String EXTRA_EPISODE = "episode";
 
     private String show;
+    private String showName;
     private Long season;
     private Long episode;
 
@@ -38,6 +40,7 @@ public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implem
 
         if (extras != null) {
             show = extras.getString(EXTRA_SHOW);
+            showName = extras.getString(EXTRA_SHOW_NAME);
             season = extras.getLong(EXTRA_SEASON);
             episode = extras.getLong(EXTRA_EPISODE);
         }
@@ -70,7 +73,7 @@ public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implem
     }
 
     private void loadToolbarTitle() {
-        getSupportActionBar().setTitle(MessageFormat.format("S{0}E{1} - {2}", season, episode, show));
+        getSupportActionBar().setTitle(MessageFormat.format("S{0}E{1} - {2}", season, episode, showName));
     }
 
     @Override

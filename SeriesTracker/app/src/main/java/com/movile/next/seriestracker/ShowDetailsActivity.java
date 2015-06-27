@@ -40,7 +40,7 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         //tabs.setTextColor(getResources().getColor(R.color.default_textColor_first));
 
         configureToolbar();
-        loadToolbarTitle(showKey);
+        //loadToolbarTitle(showKey);
         showLoading();
     }
 
@@ -101,6 +101,8 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
 
         // status
         ((TextView) findViewById(R.id.show_details_ended)).setText(show.status());
+
+        loadToolbarTitle(show.title());
 
         hideLoading();
     }

@@ -2,7 +2,9 @@ package com.movile.next.seriestracker.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Season {
+import java.io.Serializable;
+
+public class Season implements Serializable {
 
     private Long number;
     private MediaIds ids;

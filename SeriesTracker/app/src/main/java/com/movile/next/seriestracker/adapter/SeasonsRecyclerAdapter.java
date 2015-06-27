@@ -24,7 +24,7 @@ import java.util.List;
 public class SeasonsRecyclerAdapter extends RecyclerView.Adapter<SeasonsRecyclerAdapter.ViewHolder> {
 
     public interface OnSeasonClickListener {
-
+        void onSeasonClick(Season season);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -83,17 +83,24 @@ public class SeasonsRecyclerAdapter extends RecyclerView.Adapter<SeasonsRecycler
     private void loadImage(ImageView imageView, String url) {
         Glide.with(mContext)
                 .load(url)
-                .placeholder(R.drawable.highlight_placeholder)
+                .placeholder(R.drawable.season_item_placeholder)
                 .centerCrop()
                 .into(imageView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Season season = mSeasons.get(position);
+        final Season season = mSeasons.get(position);
 
         holder.getTile().setText(String.format("Season %d", season.number()));
         holder.getEpisodes().setText(String.format("%d Episodes", season.episodeCount()));
+
+        holder.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onSeasonClick(season);
+            }
+        });
 
         loadImage(holder.getImage(), season.images().poster().get(Images.ImageSize.THUMB));
 

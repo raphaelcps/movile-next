@@ -31,7 +31,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="-64dp"
         android:scaleType="centerInside"
-        android:src="@drawable/highlight_placeholder"
+        android:src="@drawable/season_details_show_placeholder"
         android:layout_alignBottom="@+id/season_details_list_header_image"
         android:layout_alignLeft="@+id/season_details_list_header_image" />
     <TextView
