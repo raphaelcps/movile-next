@@ -4,39 +4,38 @@ import android.content.Context;
 
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.model.Season;
-import com.movile.next.seriestracker.remote.client.EpisodeRemoteClient;
 import com.movile.next.seriestracker.remote.client.ISeasonLoader;
 import com.movile.next.seriestracker.remote.client.SeasonRemoteClient;
 import com.movile.next.seriestracker.util.ApiConfiguration;
 import com.movile.next.seriestracker.view.SeasonDetailsView;
+import com.movile.next.seriestracker.view.SeasonsDetailsView;
 
 import java.util.List;
 
 /**
  * Created by Raphael on 20/06/2015.
  */
-public class SeasonDetailsPresenter implements ISeasonLoader{
+public class SeasonsDetailsPresenter implements ISeasonLoader{
 
-    SeasonDetailsView mView;
-    Context context;
+    SeasonsDetailsView mView;
     SeasonRemoteClient mClient;
 
-    public SeasonDetailsPresenter(Context context, SeasonDetailsView mView) {
+    public SeasonsDetailsPresenter(SeasonsDetailsView mView) {
         this.mView = mView;
-        this.context = context;
         this.mClient = new SeasonRemoteClient(ApiConfiguration.URL_BASE, this);
     }
 
     @Override
     public void onSeasonLoaded(List<Episode> episodes) {
-        mView.loadSeason(episodes);
+
     }
 
     @Override
     public void onSeasonsLoaded(List<Season> seasons) {
+        mView.loadSeasons(seasons);
     }
 
-    public void getSeasonDetails(String show, Long season) {
-        mClient.getSeasonDetails(show, season);
+    public void getSeasonsDetails(String show) {
+        mClient.getSeasons(show);
     }
 }

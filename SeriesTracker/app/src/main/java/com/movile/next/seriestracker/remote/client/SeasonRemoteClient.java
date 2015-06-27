@@ -3,6 +3,7 @@ package com.movile.next.seriestracker.remote.client;
 import android.util.Log;
 
 import com.movile.next.seriestracker.model.Episode;
+import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.remote.service.ISeasonRemoteService;
 import com.movile.next.seriestracker.util.FormatUtil;
 
@@ -46,6 +47,21 @@ public class SeasonRemoteClient {
             @Override
             public void failure(RetrofitError error) {
                 Log.e(TAG, "Error fetching season: " + error, error.getCause());
+            }
+        });
+    }
+
+    public void getSeasons(String show) {
+        ISeasonRemoteService service = mAdapter.create(ISeasonRemoteService.class);
+        service.getSeasons(show, new Callback<List<Season>>() {
+            @Override
+            public void success(List<Season> seasons, Response response) {
+                handler.onSeasonsLoaded(seasons);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e(TAG, "Error fetching seasons: " + error, error.getCause());
             }
         });
     }

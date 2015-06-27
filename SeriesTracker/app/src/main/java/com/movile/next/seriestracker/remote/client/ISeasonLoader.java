@@ -1,6 +1,7 @@
 package com.movile.next.seriestracker.remote.client;
 
 import com.movile.next.seriestracker.model.Episode;
+import com.movile.next.seriestracker.model.Season;
 
 import java.util.List;
 
@@ -9,5 +10,7 @@ import java.util.List;
  */
 public interface ISeasonLoader {
     void onSeasonLoaded(List<Episode> episodes);
+
+    void onSeasonsLoaded(List<Season> seasons);
 }
 

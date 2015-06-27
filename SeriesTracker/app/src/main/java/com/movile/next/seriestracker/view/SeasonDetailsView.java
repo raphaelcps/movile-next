@@ -1,6 +1,7 @@
 package com.movile.next.seriestracker.view;
 
 import com.movile.next.seriestracker.model.Episode;
+import com.movile.next.seriestracker.model.Season;
 
 import java.util.List;
 
@@ -9,6 +10,5 @@ import java.util.List;
  */
 public interface SeasonDetailsView
 {
-
     void loadSeason(List<Episode> episodes);
 }
