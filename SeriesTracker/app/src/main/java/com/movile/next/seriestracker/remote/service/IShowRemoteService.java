@@ -20,9 +20,15 @@ public interface IShowRemoteService {
             "trakt-api-version: " + ApiConfiguration.API_VERSION,
             "trakt-api-key: " + ApiConfiguration.API_KEY
     })
-
     @GET("/shows/{show}?extended=full,images")
     void getShowInfo(
             @Path("show") String show,
             Callback<Show> callback);
+
+    @Headers({
+            "trakt-api-version: " + ApiConfiguration.API_VERSION,
+            "trakt-api-key: " + ApiConfiguration.API_KEY
+    })
+    @GET("/shows/popular?limit=50&extended=full,images")
+    void getShows(Callback<List<Show>> callback);
 }

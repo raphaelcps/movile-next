@@ -22,6 +22,8 @@ public class ShowRemoteClient {
 
     public interface IShowLoader {
         void onShowLoaded(Show show);
+
+        void onShowsLoaded(List<Show> shows);
     }
 
     private static final String TAG = ShowRemoteClient.class.getSimpleName();
@@ -47,6 +49,21 @@ public class ShowRemoteClient {
             @Override
             public void failure(RetrofitError error) {
                 Log.e(TAG, "Error fetching show: " + error, error.getCause());
+            }
+        });
+    }
+
+    public void getShows() {
+        IShowRemoteService service = mAdapter.create(IShowRemoteService.class);
+        service.getShows(new Callback<List<Show>>() {
+            @Override
+            public void success(List<Show> shows, Response response) {
+                handler.onShowsLoaded(shows);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e(TAG, "Error fetching shows: " + error, error.getCause());
             }
         });
     }

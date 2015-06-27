@@ -1,7 +1,6 @@
 package com.movile.next.seriestracker.fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.movile.next.seriestracker.R;
-import com.movile.next.seriestracker.SeasonDetailsActivity;
 import com.movile.next.seriestracker.adapter.SeasonsRecyclerAdapter;
 import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.model.Show;
-import com.movile.next.seriestracker.presenter.SeasonDetailsPresenter;
 import com.movile.next.seriestracker.presenter.SeasonsDetailsPresenter;
 import com.movile.next.seriestracker.view.SeasonsDetailsView;
 
@@ -27,6 +24,7 @@ public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, 
     private Show show;
     private SeasonsDetailsPresenter mPresenter;
     private SeasonsRecyclerAdapter mAdapter;
+    private OnFragmentInteractionListener mListener;
 
     public static ShowSeasonFragment newInstance(Show show) {
         ShowSeasonFragment fragment = new ShowSeasonFragment();
@@ -70,12 +68,18 @@ public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        //mListener = null;
+        mListener = null;
     }
 
     @Override
@@ -85,9 +89,10 @@ public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, 
 
     @Override
     public void onSeasonClick(Season season) {
-        Intent intent = new Intent(this.getActivity(), SeasonDetailsActivity.class);
-        intent.putExtra(SeasonDetailsActivity.EXTRA_SEASON, season);
-        intent.putExtra(SeasonDetailsActivity.EXTRA_SHOW, show);
-        startActivity(intent);
+        mListener.onSeasonClick(season);
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onSeasonClick(Season season);
     }
 }

@@ -1,5 +1,6 @@
 package com.movile.next.seriestracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -13,21 +14,35 @@ import com.bumptech.glide.Glide;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowDetailsAdapter;
 import com.movile.next.seriestracker.fragment.ShowInfoFragment;
+import com.movile.next.seriestracker.fragment.ShowSeasonFragment;
 import com.movile.next.seriestracker.model.Images;
+import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.model.Show;
 import com.movile.next.seriestracker.presenter.ShowDetailsPresenter;
 import com.movile.next.seriestracker.view.ShowDetailsView;
 
 
-public class ShowDetailsActivity extends BaseNavigationToolbarActivity implements ShowInfoFragment.OnFragmentInteractionListener, ShowDetailsView {
+public class ShowDetailsActivity extends BaseNavigationToolbarActivity implements ShowInfoFragment.OnFragmentInteractionListener, ShowSeasonFragment.OnFragmentInteractionListener, ShowDetailsView {
 
+    public final static String EXTRA_SHOW_SLUG = "show_slug";
     ShowDetailsPresenter presenter;
     String showKey = "breaking-bad";
+    Show mShow;
+
+    private void loadParams() {
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            showKey = extras.getString(EXTRA_SHOW_SLUG);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_details_activity);
+
+        loadParams();
 
         presenter = new ShowDetailsPresenter(this, this);
         presenter.getShowInfo(showKey);
@@ -81,6 +96,8 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
 
     @Override
     public void loadShow(Show show) {
+        mShow = show;
+
         // set pager
         ViewPager viewPager = (ViewPager) findViewById(R.id.show_details_content);
         viewPager.setAdapter(new ShowDetailsAdapter(getSupportFragmentManager(), show));
@@ -105,5 +122,13 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         loadToolbarTitle(show.title());
 
         hideLoading();
+    }
+
+    @Override
+    public void onSeasonClick(Season season) {
+        Intent intent = new Intent(this, SeasonDetailsActivity.class);
+        intent.putExtra(SeasonDetailsActivity.EXTRA_SEASON, season);
+        intent.putExtra(SeasonDetailsActivity.EXTRA_SHOW, mShow);
+        startActivity(intent);
     }
 }
