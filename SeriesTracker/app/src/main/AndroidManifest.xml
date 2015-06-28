@@ -21,21 +21,19 @@
             android:name=".activity.ShowDetailsActivity"
             android:label="@string/title_activity_show_details"
             android:parentActivityName=".activity.PopularShowsActivity">
-
         </activity>
         <activity
             android:name=".activity.PopularShowsActivity"
-            android:label="@string/title_activity_popular_shows" >
+            android:label="@string/title_activity_popular_shows">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <service
             android:name=".service.ShowUpdateService"
-            android:exported="false" >
+            android:exported="false">
         </service>
 
         <receiver
