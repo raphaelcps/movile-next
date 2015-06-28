@@ -21,7 +21,7 @@ import java.util.List;
 public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, SeasonsRecyclerAdapter.OnSeasonClickListener {
     private static final String ARG_SHOW = "show";
 
-    private Show show;
+    private Show mShow;
     private SeasonsDetailsPresenter mPresenter;
     private SeasonsRecyclerAdapter mAdapter;
     private OnFragmentInteractionListener mListener;
@@ -43,7 +43,7 @@ public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            show = (Show) getArguments().getSerializable(ARG_SHOW);
+            mShow = (Show) getArguments().getSerializable(ARG_SHOW);
         }
     }
 
@@ -60,7 +60,7 @@ public class ShowSeasonFragment extends Fragment implements SeasonsDetailsView, 
         mAdapter = new SeasonsRecyclerAdapter(inflater.getContext(), this);
         recyclerView.setAdapter(mAdapter);
 
-        mPresenter.getSeasonsDetails(show.ids().slug());
+        mPresenter.getSeasonsDetails(mShow.ids().slug());
 
         return view;
     }

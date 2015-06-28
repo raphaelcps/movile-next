@@ -2,7 +2,6 @@ package com.movile.next.seriestracker;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,10 +26,10 @@ public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implem
     public final static String EXTRA_SEASON = "season";
     public final static String EXTRA_EPISODE = "episode";
 
-    private String show;
-    private String showName;
-    private Long season;
-    private Long episode;
+    private String mShow;
+    private String mShowName;
+    private Long mSeason;
+    private Long mEpisode;
 
     public final static String TAG = EpisodeDetailsActivity.class.getSimpleName();
     private EpisodeDetailsPresenter mPresenter;
@@ -39,10 +38,10 @@ public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implem
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            show = extras.getString(EXTRA_SHOW);
-            showName = extras.getString(EXTRA_SHOW_NAME);
-            season = extras.getLong(EXTRA_SEASON);
-            episode = extras.getLong(EXTRA_EPISODE);
+            mShow = extras.getString(EXTRA_SHOW);
+            mShowName = extras.getString(EXTRA_SHOW_NAME);
+            mSeason = extras.getLong(EXTRA_SEASON);
+            mEpisode = extras.getLong(EXTRA_EPISODE);
         }
     }
 
@@ -67,13 +66,13 @@ public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implem
 
         mPresenter = new EpisodeDetailsPresenter(this);
 
-        mPresenter.getEpisodeDetails(show, season, episode);
+        mPresenter.getEpisodeDetails(mShow, mSeason, mEpisode);
 
         Log.d(TAG, "onCreate()");
     }
 
     private void loadToolbarTitle() {
-        getSupportActionBar().setTitle(MessageFormat.format("S{0}E{1} - {2}", season, episode, showName));
+        getSupportActionBar().setTitle(MessageFormat.format("S{0}E{1} - {2}", mSeason, mEpisode, mShowName));
     }
 
     @Override

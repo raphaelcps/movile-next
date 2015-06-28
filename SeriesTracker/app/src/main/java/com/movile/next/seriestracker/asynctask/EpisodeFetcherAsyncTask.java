@@ -11,22 +11,22 @@ import com.movile.next.seriestracker.model.Episode;
  */
 public class EpisodeFetcherAsyncTask extends AsyncTask<Void, Void, Episode> {
 
-    private Context context;
-    private IEpisodeLoader loader;
+    private Context mContext;
+    private IEpisodeLoader mLoader;
     public EpisodeFetcherAsyncTask(Context context, IEpisodeLoader loader) {
-        this.context = context;
-        this.loader = loader;
+        this.mContext = context;
+        this.mLoader = loader;
     }
 
     @Override
     protected Episode doInBackground(Void... params) {
         FetchLocalEpisodeDetails fetcher = new FetchLocalEpisodeDetails();
 
-        return fetcher.get(context);
+        return fetcher.get(mContext);
     }
 
     @Override
     protected void onPostExecute(Episode episode) {
-        loader.onEpisodeLoaded(episode);
+        mLoader.onEpisodeLoaded(episode);
     }
 }

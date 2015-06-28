@@ -20,14 +20,12 @@
         <activity
             android:name=".ShowDetailsActivity"
             android:label="@string/title_activity_show_details" >
-
         </activity>
         <activity
             android:name=".PopularShowsActivity"
             android:label="@string/title_activity_popular_shows" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

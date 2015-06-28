@@ -14,8 +14,8 @@ import com.movile.next.seriestracker.view.EpisodeDetailsView;
  */
 public class EpisodeDetailsPresenter implements IEpisodeLoader, IRemoteImageLoader {
 
-    EpisodeDetailsView mView;
-    EpisodeRemoteClient mClient;
+    private EpisodeDetailsView mView;
+    private EpisodeRemoteClient mClient;
 
     public EpisodeDetailsPresenter(EpisodeDetailsView mView) {
         this.mView = mView;

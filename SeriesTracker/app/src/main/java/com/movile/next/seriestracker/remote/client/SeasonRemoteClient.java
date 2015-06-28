@@ -5,9 +5,7 @@ import android.util.Log;
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.remote.service.ISeasonRemoteService;
-import com.movile.next.seriestracker.util.FormatUtil;
 
-import java.io.IOException;
 import java.util.List;
 
 import retrofit.Callback;
@@ -22,12 +20,12 @@ public class SeasonRemoteClient {
 
     private static final String TAG = SeasonRemoteClient.class.getSimpleName();
 
-    ISeasonLoader handler;
-    RestAdapter mAdapter;
+    private ISeasonLoader mHandler;
+    private RestAdapter mAdapter;
 
     public SeasonRemoteClient(String endpoint, ISeasonLoader handler) {
         this.mAdapter = new RestAdapter.Builder().setEndpoint(endpoint).build();
-        this.handler = handler;
+        this.mHandler = handler;
     }
 
     public void getSeasonDetails(String show, Long season) {
@@ -41,7 +39,7 @@ public class SeasonRemoteClient {
                 //} catch (IOException e) {
                   //  e.printStackTrace();
                 //}
-                handler.onSeasonLoaded(episodes);
+                mHandler.onSeasonLoaded(episodes);
             }
 
             @Override
@@ -56,7 +54,7 @@ public class SeasonRemoteClient {
         service.getSeasons(show, new Callback<List<Season>>() {
             @Override
             public void success(List<Season> seasons, Response response) {
-                handler.onSeasonsLoaded(seasons);
+                mHandler.onSeasonsLoaded(seasons);
             }
 
             @Override

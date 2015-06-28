@@ -23,19 +23,14 @@ public class ShowInfoFragment extends Fragment {
 
     private static final String ARG_SHOW = "show";
 
-    private Show show;
+    private Show mShow;
 
     private OnFragmentInteractionListener mListener;
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ShowInfoFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ShowInfoFragment newInstance(Show show) {
         ShowInfoFragment fragment = new ShowInfoFragment();
         Bundle args = new Bundle();
@@ -52,7 +47,7 @@ public class ShowInfoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            show = (Show)getArguments().getSerializable(ARG_SHOW);
+            mShow = (Show)getArguments().getSerializable(ARG_SHOW);
         }
     }
 

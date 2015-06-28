@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.model.Season;
-import com.movile.next.seriestracker.remote.client.EpisodeRemoteClient;
 import com.movile.next.seriestracker.remote.client.ISeasonLoader;
 import com.movile.next.seriestracker.remote.client.SeasonRemoteClient;
 import com.movile.next.seriestracker.util.ApiConfiguration;
@@ -17,13 +16,13 @@ import java.util.List;
  */
 public class SeasonDetailsPresenter implements ISeasonLoader{
 
-    SeasonDetailsView mView;
-    Context context;
-    SeasonRemoteClient mClient;
+    private SeasonDetailsView mView;
+    private Context mContext;
+    private SeasonRemoteClient mClient;
 
     public SeasonDetailsPresenter(Context context, SeasonDetailsView mView) {
         this.mView = mView;
-        this.context = context;
+        this.mContext = context;
         this.mClient = new SeasonRemoteClient(ApiConfiguration.URL_BASE, this);
     }
 

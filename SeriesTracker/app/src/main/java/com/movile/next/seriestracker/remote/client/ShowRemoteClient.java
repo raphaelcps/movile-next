@@ -2,10 +2,7 @@ package com.movile.next.seriestracker.remote.client;
 
 import android.util.Log;
 
-import com.movile.next.seriestracker.model.Episode;
-import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.model.Show;
-import com.movile.next.seriestracker.remote.service.ISeasonRemoteService;
 import com.movile.next.seriestracker.remote.service.IShowRemoteService;
 
 import java.util.List;
@@ -28,12 +25,12 @@ public class ShowRemoteClient {
 
     private static final String TAG = ShowRemoteClient.class.getSimpleName();
 
-    IShowLoader handler;
-    RestAdapter mAdapter;
+    private IShowLoader mHandler;
+    private RestAdapter mAdapter;
 
     public ShowRemoteClient(String endpoint, IShowLoader handler) {
         this.mAdapter = new RestAdapter.Builder().setEndpoint(endpoint).build();
-        this.handler = handler;
+        this.mHandler = handler;
     }
 
     public void getShowInfo(String show) {
@@ -43,7 +40,7 @@ public class ShowRemoteClient {
             public void success(Show show, Response response) {
 
                 Log.e(TAG, "URL: " + response.getUrl());
-                handler.onShowLoaded(show);
+                mHandler.onShowLoaded(show);
             }
 
             @Override
@@ -58,7 +55,7 @@ public class ShowRemoteClient {
         service.getShows(new Callback<List<Show>>() {
             @Override
             public void success(List<Show> shows, Response response) {
-                handler.onShowsLoaded(shows);
+                mHandler.onShowsLoaded(shows);
             }
 
             @Override

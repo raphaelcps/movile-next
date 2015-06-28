@@ -14,11 +14,11 @@ import java.net.URL;
 public class RemoteImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
     private static final String TAG = RemoteImageAsyncTask.class.getSimpleName();
 
-    IRemoteImageLoader handler;
+    private IRemoteImageLoader mHandler;
 
     public RemoteImageAsyncTask(IRemoteImageLoader handler) {
         super();
-        this.handler = handler;
+        this.mHandler = handler;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class RemoteImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        this.handler.onImageLoaded(bitmap);
+        this.mHandler.onImageLoaded(bitmap);
     }
 
 }

@@ -19,29 +19,29 @@ import java.util.List;
  */
 public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
 
-    SeasonDetailsClickListener listener;
-    Context context;
-    List<Episode> episodes;
+    private SeasonDetailsClickListener mListener;
+    private Context mContext;
+    private List<Episode> mEpisodes;
 
     public SeasonDetailsAdapter(Context context, SeasonDetailsClickListener listener) {
         super(context, R.layout.season_details_list_item);
 
-        this.listener = listener;
-        this.context = context;
+        this.mListener = listener;
+        this.mContext = context;
     }
 
     public int getCount() {
-        if (episodes != null) {
-            return episodes.size();
+        if (mEpisodes != null) {
+            return mEpisodes.size();
         }
         return 0;
     }
 
     public Episode getItem(int position) {
-        if (episodes == null || episodes.size() <= position) {
+        if (mEpisodes == null || mEpisodes.size() <= position) {
             return null;
         }
-        return episodes.get(position);
+        return mEpisodes.get(position);
     }
 
     public long getItemId(int position) {
@@ -57,7 +57,8 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
         int type = getItemViewType(position);
         if (view == null) {
             int resource = R.layout.season_details_list_item;
-            /*
+
+            /* TODO: do it?
             if (type == TYPE_TBA) {
                 resource = R.layout.episode_item_tba;
             }*/
@@ -88,7 +89,7 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
             holder.getView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.loadEpisode(item);
+                    mListener.loadEpisode(item);
                 }
             });
         }
@@ -119,19 +120,16 @@ public class SeasonDetailsAdapter extends ArrayAdapter<Episode> {
             episodeNumber = (TextView)view.findViewById(R.id.season_details_list_item_episode_number);
             title = (TextView)view.findViewById(R.id.season_details_list_item_episode_title);
         }
-
-
     }
-
 
     @Override
     public void addAll(Collection<? extends Episode> collection) {
         super.addAll(collection);
 
-        if (this.episodes == null) {
-            this.episodes = new ArrayList<Episode>(collection);
+        if (this.mEpisodes == null) {
+            this.mEpisodes = new ArrayList<Episode>(collection);
         } else {
-            this.episodes.addAll(collection);
+            this.mEpisodes.addAll(collection);
         }
 
         this.notifyDataSetChanged();

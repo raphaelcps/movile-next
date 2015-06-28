@@ -18,7 +18,6 @@ import java.util.Date;
 public class FormatUtil {
 
     private static final String TAG = FormatUtil.class.getSimpleName();
-
     public static final String FORMAT_STRING_TO_DATE = "yyyy-MM-dd'T'HH:mm:ss";
     public static final String FORMAT_DATE_TO_STRING = "MM/dd/yyyy 'at' HH:mm";
 

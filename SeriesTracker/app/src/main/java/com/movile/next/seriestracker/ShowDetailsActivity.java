@@ -2,11 +2,9 @@ package com.movile.next.seriestracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,15 +23,15 @@ import com.movile.next.seriestracker.view.ShowDetailsView;
 public class ShowDetailsActivity extends BaseNavigationToolbarActivity implements ShowInfoFragment.OnFragmentInteractionListener, ShowSeasonFragment.OnFragmentInteractionListener, ShowDetailsView {
 
     public final static String EXTRA_SHOW_SLUG = "show_slug";
-    ShowDetailsPresenter presenter;
-    String showKey = "breaking-bad";
-    Show mShow;
+    private ShowDetailsPresenter mPresenter;
+    private String mShowSlug = "breaking-bad";
+    private Show mShow;
 
     private void loadParams() {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            showKey = extras.getString(EXTRA_SHOW_SLUG);
+            mShowSlug = extras.getString(EXTRA_SHOW_SLUG);
         }
     }
 
@@ -44,8 +42,8 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
 
         loadParams();
 
-        presenter = new ShowDetailsPresenter(this, this);
-        presenter.getShowInfo(showKey);
+        mPresenter = new ShowDetailsPresenter(this, this);
+        mPresenter.getShowInfo(mShowSlug);
 
         configure();
     }
@@ -55,7 +53,7 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         //tabs.setTextColor(getResources().getColor(R.color.default_textColor_first));
 
         configureToolbar();
-        //loadToolbarTitle(showKey);
+        //loadToolbarTitle(mShowSlug);
         showLoading();
     }
 

@@ -9,24 +9,24 @@ import com.movile.next.seriestracker.model.Episode;
 
 public class EpisodeLoaderCallback implements LoaderManager.LoaderCallbacks<Episode> {
 
-    private Context context;
-    private  String serieId;
-    IEpisodeLoader handler;
+    private Context mContext;
+    private  String mShowSlug;
+    private IEpisodeLoader mHandler;
 
-    public EpisodeLoaderCallback(Context context, String serieId, IEpisodeLoader handler) {
-        this.context = context;
-        this.serieId = serieId;
-        this.handler = handler;
+    public EpisodeLoaderCallback(Context context, String showSlug, IEpisodeLoader handler) {
+        this.mContext = context;
+        this.mShowSlug = showSlug;
+        this.mHandler = handler;
     }
 
     @Override
     public Loader<Episode> onCreateLoader(int id, Bundle args) {
-        return new EpisodeLoader(context, serieId);
+        return new EpisodeLoader(mContext, mShowSlug);
     }
 
     @Override
     public void onLoadFinished(Loader<Episode> loader, Episode data) {
-        this.handler.onEpisodeLoaded(data);
+        this.mHandler.onEpisodeLoaded(data);
     }
 
     @Override

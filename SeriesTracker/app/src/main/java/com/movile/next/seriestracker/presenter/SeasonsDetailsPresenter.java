@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class SeasonsDetailsPresenter implements ISeasonLoader{
 
-    SeasonsDetailsView mView;
-    SeasonRemoteClient mClient;
+    private SeasonsDetailsView mView;
+    private SeasonRemoteClient mClient;
 
     public SeasonsDetailsPresenter(SeasonsDetailsView mView) {
         this.mView = mView;

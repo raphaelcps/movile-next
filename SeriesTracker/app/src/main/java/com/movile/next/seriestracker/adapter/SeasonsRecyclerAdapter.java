@@ -59,9 +59,9 @@ public class SeasonsRecyclerAdapter extends RecyclerView.Adapter<SeasonsRecycler
         }
     }
 
-    OnSeasonClickListener mListener;
-    List<Season> mSeasons;
-    Context mContext;
+    private OnSeasonClickListener mListener;
+    private List<Season> mSeasons;
+    private Context mContext;
 
     public SeasonsRecyclerAdapter(Context context, OnSeasonClickListener listener) {
         super();

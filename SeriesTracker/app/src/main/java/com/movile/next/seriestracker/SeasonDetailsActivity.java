@@ -1,7 +1,6 @@
 package com.movile.next.seriestracker;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,17 +26,17 @@ public class SeasonDetailsActivity extends com.movile.next.seriestracker.activit
 
     public static final String EXTRA_SEASON = "season";
     public static final String EXTRA_SHOW = "show";
-    SeasonDetailsPresenter presenter;
-    SeasonDetailsAdapter adapter;
-    Season mSeason;
-    Show mShow;
+    private SeasonDetailsPresenter mPresenter;
+    private  SeasonDetailsAdapter mAdapter;
+    private Season mSeason;
+    private Show mShow;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.season_details_activity);
-        presenter = new SeasonDetailsPresenter(this, this);
+        mPresenter = new SeasonDetailsPresenter(this, this);
         setupContent();
     }
 
@@ -55,9 +54,9 @@ public class SeasonDetailsActivity extends com.movile.next.seriestracker.activit
 
         ListView view = (ListView)findViewById(R.id.season_details_list_view);
         view.addHeaderView(LayoutInflater.from(this).inflate(R.layout.season_details_list_header, view, false));
-        adapter = new SeasonDetailsAdapter(this, this);
-        view.setAdapter(adapter);
-        presenter.getSeasonDetails(mShow.ids().slug(), mSeason.number());
+        mAdapter = new SeasonDetailsAdapter(this, this);
+        view.setAdapter(mAdapter);
+        mPresenter.getSeasonDetails(mShow.ids().slug(), mSeason.number());
     }
 
     private void loadParams() {
@@ -109,7 +108,7 @@ public class SeasonDetailsActivity extends com.movile.next.seriestracker.activit
 
     @Override
     public void loadSeason(List<Episode> episodes) {
-        adapter.addAll(episodes);
+        mAdapter.addAll(episodes);
 
         // set score
         ((TextView) findViewById(R.id.season_details_score)).setText(String.format("%.1f", mSeason.rating()));

@@ -8,8 +8,6 @@ import com.movile.next.seriestracker.fragment.ShowInfoFragment;
 import com.movile.next.seriestracker.fragment.ShowSeasonFragment;
 import com.movile.next.seriestracker.model.Show;
 
-import java.text.MessageFormat;
-
 /**
  * Created by movile on 21/06/15.
  */
@@ -18,11 +16,11 @@ public class ShowDetailsAdapter extends FragmentPagerAdapter {
     private static final int PAGE_INFO = 0;
     private static final int PAGE_SEASONS = 1;
 
-    private Show show;
+    private Show mShow;
 
     public ShowDetailsAdapter(FragmentManager manager, Show show) {
         super(manager);
-        this.show = show;
+        this.mShow = show;
     }
 
     public CharSequence getPageTitle(int position) {
@@ -38,9 +36,9 @@ public class ShowDetailsAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == PAGE_INFO) {
-            return ShowInfoFragment.newInstance(show);
+            return ShowInfoFragment.newInstance(mShow);
         } else {
-            return ShowSeasonFragment.newInstance(show);
+            return ShowSeasonFragment.newInstance(mShow);
         }
     }
 

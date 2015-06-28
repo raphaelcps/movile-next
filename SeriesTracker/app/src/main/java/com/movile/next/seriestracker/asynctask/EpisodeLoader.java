@@ -24,28 +24,26 @@ public class EpisodeLoader extends AsyncTaskLoader<Episode> {
 
     private static final String TAG = EpisodeLoader.class.getSimpleName();
 
-    String serieId;
-    Context context;
+    private String mShowSlug;
 
-    public EpisodeLoader(Context context, String seriesId) {
+    public EpisodeLoader(Context context, String slug) {
         super(context);
-        this.context = context;
-        this.serieId = seriesId;
+        this.mShowSlug = slug;
     }
 
     @Override
     public Episode loadInBackground() {
         Episode episode = null;
         InputStreamReader reader = null;
-        Resources res = context.getResources();
+        Resources res = getContext().getResources();
         String url = res.getString(R.string.api_url_base) +
-                MessageFormat.format(res.getString(R.string.api_url_episode), serieId, 1, 1) +
+                MessageFormat.format(res.getString(R.string.api_url_episode), mShowSlug, 1, 1) +
                 "?" +
                 res.getString(R.string.api_url_query_image);
 
         Log.d(TAG, url);
         try {
-            HttpURLConnection connection = configureConnection(context, url);
+            HttpURLConnection connection = configureConnection(getContext(), url);
             connection.connect();
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream stream = connection.getInputStream();

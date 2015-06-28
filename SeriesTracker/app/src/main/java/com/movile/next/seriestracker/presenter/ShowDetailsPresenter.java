@@ -14,13 +14,13 @@ import java.util.List;
  */
 public class ShowDetailsPresenter implements ShowRemoteClient.IShowLoader {
 
-    ShowDetailsView mView;
-    Context context;
-    ShowRemoteClient mClient;
+    private ShowDetailsView mView;
+    private Context mContext;
+    private ShowRemoteClient mClient;
 
     public ShowDetailsPresenter(Context context, ShowDetailsView mView) {
         this.mView = mView;
-        this.context = context;
+        this.mContext = context;
         this.mClient = new ShowRemoteClient(ApiConfiguration.URL_BASE, this);
     }
 
