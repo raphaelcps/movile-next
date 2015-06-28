@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.widget.Toast;
 
 import com.movile.next.seriestracker.R;
@@ -27,14 +28,21 @@ public class ShowUpdateReceiver extends BroadcastReceiver {
             ShowUpdate update = (ShowUpdate)intent.getExtras().getSerializable(EXTRA_UPDATE);
 
             //Log.d("Receiver", update.title());
-            Toast.makeText(context, update.message(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, update.message(), Toast.LENGTH_SHORT).show();
 
             Intent pIntent = new Intent(context, ShowDetailsActivity.class);
             pIntent.putExtra(ShowDetailsActivity.EXTRA_SHOW_SLUG, update.show());
             pIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+            /*
             PendingIntent action = PendingIntent.getActivity(
                     context, 0, pIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    */
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addParentStack(ShowDetailsActivity.class);
+            stackBuilder.addNextIntent(pIntent);
+            PendingIntent action = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                     .setSmallIcon(R.mipmap.ic_launcher)
