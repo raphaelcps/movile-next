@@ -6,6 +6,7 @@ package com.movile.next.seriestracker.util;
 public abstract class Constants {
 
     public static final String COMMON_SHARED_PREFS = "common";
+    public static final String LAST_UPDATE_FILE = "update.date.file";
 
     public static final String KEY_LAST_UPDATE = "last_update";
 }

@@ -45,7 +45,7 @@ public class PopularShowsActivity extends BaseNavigationToolbarActivity implemen
         super.onCreate(savedInstanceState);
 
         // TODO: remove
-        setReceiver(this);
+        //setReceiver(this);
 
         setContentView(R.layout.popular_shows_activity);
 

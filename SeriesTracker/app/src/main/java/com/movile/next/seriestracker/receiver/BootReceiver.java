@@ -18,7 +18,7 @@ public class BootReceiver extends BroadcastReceiver {
 
     private void setReceiver(Context context) {
 
-        LocalBroadcastManager.getInstance(context).registerReceiver(new ShowUpdateReceiver(), new IntentFilter(ApiConfiguration.BROADCAT_ACTION_SHOW_UPDATE));
+        //LocalBroadcastManager.getInstance(context).registerReceiver(new ShowUpdateReceiver(), new IntentFilter(ApiConfiguration.BROADCAT_ACTION_SHOW_UPDATE));
 
         final long INTERVAL = 10 * 1000;
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, new Intent(context, ShowUpdateService.class), 0);
@@ -31,4 +31,5 @@ public class BootReceiver extends BroadcastReceiver {
         Log.d("BootReceiver", "BootReceiver called");
         setReceiver(context);
     }
+
 }
