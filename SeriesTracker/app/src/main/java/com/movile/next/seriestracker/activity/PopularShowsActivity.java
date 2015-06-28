@@ -1,7 +1,12 @@
 package com.movile.next.seriestracker.activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
@@ -9,8 +14,11 @@ import android.widget.GridView;
 import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowsAdapter;
+import com.movile.next.seriestracker.broadcast.UpdateReceiver;
 import com.movile.next.seriestracker.model.Show;
 import com.movile.next.seriestracker.presenter.ShowsPresenter;
+import com.movile.next.seriestracker.service.UpdatesService;
+import com.movile.next.seriestracker.util.ApiConfiguration;
 import com.movile.next.seriestracker.view.ShowsView;
 
 import java.util.List;
@@ -21,9 +29,24 @@ public class PopularShowsActivity extends BaseNavigationToolbarActivity implemen
     private ShowsPresenter presenter;
     private ShowsAdapter mAdapter;
 
+    // TODO: remove
+    private void setReceiver() {
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new UpdateReceiver(), new IntentFilter(ApiConfiguration.BROADCAT_ACTION_SHOW_UPDATE));
+
+        final long INTERVAL = 10 * 1000;
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, new Intent(this, UpdatesService.class), 0);
+        AlarmManager manager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, 0, INTERVAL, pendingIntent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // TODO: remove
+        setReceiver();
+
         setContentView(R.layout.popular_shows_activity);
 
         presenter = new ShowsPresenter(this, this);

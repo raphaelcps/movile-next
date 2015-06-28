@@ -26,9 +26,24 @@
             android:label="@string/title_activity_popular_shows" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.UpdatesService"
+            android:exported="false" >
+        </service>
+
+        <receiver
+            android:name=".broadcast.UpdateReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.movile.next.seriestracker.action.SHOW_UPDATE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -14,4 +14,9 @@ public abstract class ApiConfiguration {
 
     public static final Long TIMEOUT_READ = 10000l;
     public static final Long TIMEOUT_CONNECT = 15000l;
+
+
+    public static final String API_URL_UPDATES = "https://movile-up-android.firebaseio.com";
+
+    public static final String BROADCAT_ACTION_SHOW_UPDATE = "com.movile.next.seriestracker.action.SHOW_UPDATE";
 }
