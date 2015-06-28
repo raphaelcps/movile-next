@@ -14,10 +14,10 @@ import android.widget.GridView;
 import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowsAdapter;
-import com.movile.next.seriestracker.broadcast.UpdateReceiver;
+import com.movile.next.seriestracker.receiver.ShowUpdateReceiver;
 import com.movile.next.seriestracker.model.Show;
 import com.movile.next.seriestracker.presenter.ShowsPresenter;
-import com.movile.next.seriestracker.service.UpdatesService;
+import com.movile.next.seriestracker.service.ShowUpdateService;
 import com.movile.next.seriestracker.util.ApiConfiguration;
 import com.movile.next.seriestracker.view.ShowsView;
 
@@ -30,13 +30,13 @@ public class PopularShowsActivity extends BaseNavigationToolbarActivity implemen
     private ShowsAdapter mAdapter;
 
     // TODO: remove
-    private void setReceiver() {
+    private void setReceiver(Context context) {
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(new UpdateReceiver(), new IntentFilter(ApiConfiguration.BROADCAT_ACTION_SHOW_UPDATE));
+        LocalBroadcastManager.getInstance(context).registerReceiver(new ShowUpdateReceiver(), new IntentFilter(ApiConfiguration.BROADCAT_ACTION_SHOW_UPDATE));
 
         final long INTERVAL = 10 * 1000;
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, new Intent(this, UpdatesService.class), 0);
-        AlarmManager manager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, new Intent(context, ShowUpdateService.class), 0);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         manager.setRepeating(AlarmManager.RTC_WAKEUP, 0, INTERVAL, pendingIntent);
     }
 
@@ -45,7 +45,7 @@ public class PopularShowsActivity extends BaseNavigationToolbarActivity implemen
         super.onCreate(savedInstanceState);
 
         // TODO: remove
-        setReceiver();
+        setReceiver(this);
 
         setContentView(R.layout.popular_shows_activity);
 

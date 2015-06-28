@@ -1,18 +1,17 @@
-package com.movile.next.seriestracker.broadcast;
+package com.movile.next.seriestracker.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.movile.next.seriestracker.model.ShowUpdate;
 
-public class UpdateReceiver extends BroadcastReceiver {
+public class ShowUpdateReceiver extends BroadcastReceiver {
 
     public final static String EXTRA_UPDATE = "show_update";
 
-    public UpdateReceiver() {
+    public ShowUpdateReceiver() {
     }
 
     @Override
@@ -22,7 +21,7 @@ public class UpdateReceiver extends BroadcastReceiver {
             ShowUpdate update = (ShowUpdate)intent.getExtras().getSerializable(EXTRA_UPDATE);
 
             //Log.d("Receiver", update.title());
-            Toast.makeText(context, update.title() + " updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, update.message(), Toast.LENGTH_SHORT).show();
         }
     }
 }

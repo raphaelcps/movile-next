@@ -32,16 +32,24 @@
         </activity>
 
         <service
-            android:name=".service.UpdatesService"
+            android:name=".service.ShowUpdateService"
             android:exported="false" >
         </service>
 
         <receiver
-            android:name=".broadcast.UpdateReceiver"
+            android:name=".receiver.ShowUpdateReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.movile.next.seriestracker.action.SHOW_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>
