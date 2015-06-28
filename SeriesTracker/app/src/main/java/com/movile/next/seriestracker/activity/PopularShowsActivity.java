@@ -1,4 +1,4 @@
-package com.movile.next.seriestracker;
+package com.movile.next.seriestracker.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
 
+import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowsAdapter;
 import com.movile.next.seriestracker.model.Show;

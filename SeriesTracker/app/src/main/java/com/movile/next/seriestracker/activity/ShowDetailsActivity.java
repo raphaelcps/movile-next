@@ -1,4 +1,4 @@
-package com.movile.next.seriestracker;
+package com.movile.next.seriestracker.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowDetailsAdapter;
 import com.movile.next.seriestracker.fragment.ShowInfoFragment;

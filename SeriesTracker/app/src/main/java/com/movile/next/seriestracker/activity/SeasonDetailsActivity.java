@@ -1,4 +1,4 @@
-package com.movile.next.seriestracker;
+package com.movile.next.seriestracker.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.adapter.SeasonDetailsAdapter;
 import com.movile.next.seriestracker.adapter.SeasonDetailsClickListener;
 import com.movile.next.seriestracker.model.Episode;
