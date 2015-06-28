@@ -2,27 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    style="@style/AppTheme.SeasonDetails.item.episode.layout">
 
     <TextView
         android:id="@+id/season_details_list_item_episode_number"
-        android:layout_width="40dip"
-        android:layout_height="40dip"
-        android:layout_marginLeft="16dip"
-        android:layout_marginTop="8dip"
-        android:layout_marginBottom="8dip"
-        android:textSize="14sp"
-        android:textColor="@color/default_textColor_first"
-        android:gravity="center"
-        android:background="@drawable/episode_item_number"/>
+        style="@style/AppTheme.SeasonDetails.item.episode.number"/>
 
     <TextView
-        android:layout_gravity="center_vertical"
         android:id="@+id/season_details_list_item_episode_title"
+        style="@style/AppTheme.SeasonDetails.item.episode.title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/default_textColor_fourth"
-        android:layout_marginLeft="16dip"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

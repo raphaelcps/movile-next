@@ -62,7 +62,7 @@
                 <ImageView
                     style="@style/AppTheme.EpisodeDetails.exhibition_clock"
                     android:src="@drawable/episode_details_clock"/>
-                <TextView android:text="2000-01-01 at 00:00"
+                <TextView
                     android:id="@+id/episode_details_exhibition_time"
                     style="@style/AppTheme.EpisodeDetails.exhibition_time"
                     android:layout_width="wrap_content"
@@ -79,33 +79,17 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                <TextView android:text="SUMMARY"
-                    android:id="@+id/episode_details_summary_title"
+                <TextView android:text="@string/episode_details_summary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.EpisodeDetails.summary_title" />
-                    <!-- style="@style/AppTheme.EpisodeDetails.horizontal_line" -->
                 <View android:background="@color/default_background_third"
-                    android:id="@+id/episode_details_horizontal_line"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="1dp"
-
-                    android:layout_centerVertical="true" />
-                    <!-- style="@style/AppTheme.EpisodeDetails.summary_content" -->
+                    style="@style/AppTheme.EpisodeDetails.horizontal_line"
+                    android:layout_width="match_parent" />
                 <TextView
                     android:id="@+id/episode_details_summary"
-                    android:textColor="@color/default_textColor_fourth"
-                    android:textSize="@dimen/default_textSize_medium"
-
+                    style="@style/AppTheme.EpisodeDetails.summary_content"
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="18dp"
-                    android:layout_below="@+id/episode_details_horizontal_line"
                     android:layout_height="wrap_content" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>

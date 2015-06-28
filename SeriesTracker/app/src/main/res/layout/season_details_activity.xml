@@ -5,8 +5,6 @@
     android:id="@+id/season_details_list_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@color/default_background_first"
-    android:dividerHeight="1dip"
-    >
+    style="@style/AppTheme.SeasonDetails.list">
 
 </ListView>

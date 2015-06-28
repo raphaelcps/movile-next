@@ -19,7 +19,8 @@
                 android:id="@+id/show_season_item_image"
                 android:layout_width="88dp"
                 android:layout_height="128dp"
-                android:scaleType="fitXY" />
+                android:src="@drawable/show_item_placeholder"
+                android:scaleType="centerCrop" />
             <TextView
                 android:id="@+id/show_season_item_title"
                 android:layout_marginTop="8dp"

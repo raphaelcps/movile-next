@@ -6,43 +6,28 @@
         android:layout_width="match_parent"
         android:src="@drawable/highlight_placeholder"
         android:id="@+id/season_details_list_header_image"
-        android:layout_height="248dip"
-        android:scaleType="centerCrop"
-        />
+        style="@style/AppTheme.SeasonDetails.Header.image"/>
     <View
         android:id="@+id/season_details_list_header_background"
+        style="@style/AppTheme.SeasonDetails.Header.background"
         android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:background="@color/default_background_first"
         android:layout_below="@+id/season_details_list_header_image"/>
     <TextView
+        style="@style/AppTheme.SeasonDetails.Header.episodes"
         android:layout_alignBottom="@+id/season_details_list_header_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:layout_marginLeft="16dp"
-        android:textSize="@dimen/default_textSize_verySmall"
-        android:textColor="@color/default_textColor_third"
-        android:text="Episodes"/>
+        android:text="@string/episode_details_episodes"/>
     <ImageView
+        style="@style/AppTheme.SeasonDetails.Header.thumb"
         android:id="@+id/season_details_thumb"
-        android:layout_width="88dp"
-        android:layout_height="128dip"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="-64dp"
-        android:scaleType="centerInside"
         android:src="@drawable/season_details_show_placeholder"
         android:layout_alignBottom="@+id/season_details_list_header_image"
         android:layout_alignLeft="@+id/season_details_list_header_image" />
     <TextView
+        style="@style/AppTheme.SeasonDetails.Header.year"
         android:id="@+id/season_details_year"
-        android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/default_textColor_first"
-        android:textSize="@dimen/default_textSize_veryLarge"
-        android:gravity="center"
-        android:layout_marginBottom="7dp"
-        android:layout_marginLeft="16dp"
         android:layout_above="@+id/season_details_thumb" />
     <android.support.v7.widget.CardView
         android:id="@+id/season_details_score_card"
