@@ -2,7 +2,7 @@ package com.movile.next.seriestracker.remote.client;
 
 import android.util.Log;
 
-import com.movile.next.seriestracker.asynctask.IEpisodeLoader;
+import com.movile.next.seriestracker.loader.IEpisodeLoader;
 import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.remote.service.IEpisodeRemoteService;
 

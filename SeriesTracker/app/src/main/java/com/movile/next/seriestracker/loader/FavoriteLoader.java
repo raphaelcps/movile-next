@@ -1,9 +1,10 @@
-package com.movile.next.seriestracker.database.loader;
+package com.movile.next.seriestracker.loader;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
-import com.movile.next.seriestracker.database.dao.FavoriteDAO;
+import com.movile.next.seriestracker.database.dao.FavoriteDBFlowDAO;
+import com.movile.next.seriestracker.database.dao.IFavoriteDAO;
 import com.movile.next.seriestracker.model.Favorite;
 
 /**
@@ -14,12 +15,12 @@ public class FavoriteLoader extends AsyncTaskLoader<Favorite> {
     String mSlug;
     String mTitle;
     boolean mModify;
-    FavoriteDAO dao;
+    IFavoriteDAO dao;
 
     public FavoriteLoader(Context context, String slug, String title, boolean modify) {
         super(context);
 
-        dao = new FavoriteDAO(context);
+        dao = new FavoriteDBFlowDAO();
         mSlug = slug;
         mTitle = title;
         mModify = modify;

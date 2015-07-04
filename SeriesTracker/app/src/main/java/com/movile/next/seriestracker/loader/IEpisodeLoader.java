@@ -1,4 +1,4 @@
-package com.movile.next.seriestracker.asynctask;
+package com.movile.next.seriestracker.loader;
 
 import com.movile.next.seriestracker.model.Episode;
 

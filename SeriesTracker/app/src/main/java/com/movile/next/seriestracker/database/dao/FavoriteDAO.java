@@ -14,7 +14,7 @@ import com.movile.next.seriestracker.database.manual.entity.FavoriteEntity.*;
 /**
  * Created by movile on 04/07/15.
  */
-public class FavoriteDAO {
+public class FavoriteDAO implements IFavoriteDAO {
 
     Context mContext;
     ProviderUriHelper helper;

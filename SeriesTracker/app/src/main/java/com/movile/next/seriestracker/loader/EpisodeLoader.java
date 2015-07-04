@@ -1,4 +1,4 @@
-package com.movile.next.seriestracker.asynctask;
+package com.movile.next.seriestracker.loader;
 
 import android.content.Context;
 import android.content.res.Resources;

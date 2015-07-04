@@ -1,11 +1,10 @@
-package com.movile.next.seriestracker.database.loader;
+package com.movile.next.seriestracker.loader;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 
-import com.movile.next.seriestracker.model.Episode;
 import com.movile.next.seriestracker.model.Favorite;
 
 public class FavoriteLoaderCallback implements LoaderManager.LoaderCallbacks<Favorite> {

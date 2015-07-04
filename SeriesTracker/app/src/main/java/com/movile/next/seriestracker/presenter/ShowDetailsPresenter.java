@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 
-import com.movile.next.seriestracker.database.loader.FavoriteLoaderCallback;
+import com.movile.next.seriestracker.loader.FavoriteLoaderCallback;
 import com.movile.next.seriestracker.model.Favorite;
 import com.movile.next.seriestracker.model.Show;
 import com.movile.next.seriestracker.remote.client.ShowRemoteClient;

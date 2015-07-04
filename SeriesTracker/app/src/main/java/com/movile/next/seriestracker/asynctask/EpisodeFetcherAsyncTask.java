@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.movile.next.seriestracker.business.FetchLocalEpisodeDetails;
+import com.movile.next.seriestracker.loader.IEpisodeLoader;
 import com.movile.next.seriestracker.model.Episode;
 
 /**
