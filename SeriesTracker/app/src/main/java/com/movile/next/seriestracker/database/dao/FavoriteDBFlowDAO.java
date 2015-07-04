@@ -17,14 +17,12 @@ public class FavoriteDBFlowDAO implements IFavoriteDAO {
 
     @Override
     public void save(Favorite favorite) {
-        Log.d("DBFlow", "query");
         FavoriteEntity entity = new FavoriteEntity(favorite.slug(), favorite.title());
         entity.save();
     }
 
     @Override
     public void delete(String slug) {
-        Log.d("DBFlow", "query");
         new Delete()
                 .from(FavoriteEntity.class)
                 .where(Condition.column(FavoriteEntity$Table.SLUG).eq(slug))
@@ -33,9 +31,6 @@ public class FavoriteDBFlowDAO implements IFavoriteDAO {
 
     @Override
     public Favorite query(String slug) {
-
-        Log.d("DBFlow", "query");
-
         FavoriteEntity entity = new Select()
                 .from(FavoriteEntity.class)
                 .where(Condition.column(FavoriteEntity$Table.SLUG).eq(slug))
