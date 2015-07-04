@@ -16,6 +16,7 @@ public class Show implements Serializable {
     private String network;
     private String country;
     private String trailer;
+    private String homepage;
     private String status;
     private Double rating;
     private Long votes;
@@ -24,6 +25,11 @@ public class Show implements Serializable {
     @SerializedName("aired_episodes")
     private Long airedEpisodes;
     private Images images;
+    private Airs airs;
+
+    public Airs airs() {
+        return airs;
+    }
 
     public String title() {
         return title;
@@ -59,6 +65,10 @@ public class Show implements Serializable {
 
     public String trailer() {
         return trailer;
+    }
+
+    public String homepage() {
+        return homepage;
     }
 
     public String status() {

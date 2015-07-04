@@ -39,7 +39,7 @@ public class EpisodeDetailsActivity extends BaseNavigationToolbarActivity implem
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            mShow = extras.getString(EXTRA_SHOW);
+            mShow = extras.getString( EXTRA_SHOW);
             mShowName = extras.getString(EXTRA_SHOW_NAME);
             mSeason = extras.getLong(EXTRA_SEASON);
             mEpisode = extras.getLong(EXTRA_EPISODE);

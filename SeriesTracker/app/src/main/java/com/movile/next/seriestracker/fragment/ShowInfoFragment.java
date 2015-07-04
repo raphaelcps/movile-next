@@ -1,15 +1,19 @@
 package com.movile.next.seriestracker.fragment;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.movile.next.seriestracker.R;
+import com.movile.next.seriestracker.adapter.ShowGenresAdapter;
 import com.movile.next.seriestracker.model.Show;
+import com.movile.next.seriestracker.util.FixedLinearLayoutManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +28,10 @@ public class ShowInfoFragment extends Fragment {
     private static final String ARG_SHOW = "show";
 
     private Show mShow;
+    private View mRoot;
 
     private OnFragmentInteractionListener mListener;
+    private ShowGenresAdapter mAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -51,12 +57,36 @@ public class ShowInfoFragment extends Fragment {
         }
     }
 
+/*    @Override
+    public void onStart() {
+        super.onStart();
+        mAdapter.populate(mShow.genres());
+    }*/
+
+    private void loadInfo() {
+        ((TextView)mRoot.findViewById(R.id.show_info_summary)).setText(mShow.overview());
+        mAdapter.populate(mShow.genres());
+        ((TextView)mRoot.findViewById(R.id.show_info_details_broadcasting_value)).setText(mShow.airs().day() + " at " + mShow.airs().time() + " on " + mShow.network());
+        ((TextView)mRoot.findViewById(R.id.show_info_details_status_value)).setText(mShow.status());
+        ((TextView)mRoot.findViewById(R.id.show_info_details_episodes_value)).setText(Long.toString(mShow.airedEpisodes()));
+        ((TextView)mRoot.findViewById(R.id.show_info_details_started_value)).setText(Long.toString(mShow.year()));
+        ((TextView)mRoot.findViewById(R.id.show_info_details_country_value)).setText(mShow.country().toUpperCase());
+        ((TextView)mRoot.findViewById(R.id.show_info_details_homepage_value)).setText((mShow.homepage()!=null)?mShow.homepage():mShow.trailer());
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        mRoot = inflater.inflate(R.layout.show_info_fragment, container, false);
 
-        return inflater.inflate(R.layout.show_info_fragment, container, false);
+        RecyclerView recycler = (RecyclerView) mRoot.findViewById(R.id.show_info_list);
+        recycler.setLayoutManager(new FixedLinearLayoutManager(inflater.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mAdapter = new ShowGenresAdapter();
+        recycler.setAdapter(mAdapter);
+
+        loadInfo();
+
+        return mRoot;
     }
 
     @Override
