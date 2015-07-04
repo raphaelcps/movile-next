@@ -1,10 +1,15 @@
 package com.movile.next.seriestracker.activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,8 +17,10 @@ import com.bumptech.glide.Glide;
 import com.movile.next.seriestracker.R;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowDetailsAdapter;
+import com.movile.next.seriestracker.database.loader.FavoriteLoaderCallback;
 import com.movile.next.seriestracker.fragment.ShowInfoFragment;
 import com.movile.next.seriestracker.fragment.ShowSeasonFragment;
+import com.movile.next.seriestracker.model.Favorite;
 import com.movile.next.seriestracker.model.Images;
 import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.model.Show;
@@ -27,6 +34,7 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
     private ShowDetailsPresenter mPresenter;
     private String mShowSlug = "breaking-bad";
     private Show mShow;
+    private FloatingActionButton mFavoriteButton;
 
     private void loadParams() {
         Bundle extras = getIntent().getExtras();
@@ -41,10 +49,13 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_details_activity);
 
+        FloatingActionButton a = null;
+
         loadParams();
 
-        mPresenter = new ShowDetailsPresenter(this, this);
+        mPresenter = new ShowDetailsPresenter(this, this, getSupportLoaderManager());
         mPresenter.getShowInfo(mShowSlug);
+        mPresenter.getFavoriteStatus(mShowSlug);
 
         configure();
     }
@@ -56,6 +67,17 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         configureToolbar();
         //loadToolbarTitle(mShowSlug);
         showLoading();
+
+        mFavoriteButton = (FloatingActionButton) findViewById(R.id.show_details_favorite_button);
+
+        mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mShow != null) {
+                    mPresenter.setFavorite(mShow.ids().slug(), mShow.title());
+                }
+            }
+        });
     }
 
     private void loadToolbarTitle(String show) {
@@ -129,5 +151,19 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         intent.putExtra(SeasonDetailsActivity.EXTRA_SEASON, season);
         intent.putExtra(SeasonDetailsActivity.EXTRA_SHOW, mShow);
         startActivity(intent);
+    }
+
+    @Override
+    public void onFavoriteLoaded(Favorite favorite) {
+        //Log.d("aaaaaaa", favorite.title());
+        if (favorite != null) {
+            Log.d("aaaaaaa", favorite.title());
+            mFavoriteButton.setImageResource(R.drawable.show_details_favorite_on);
+            mFavoriteButton.setBackgroundTintList(getResources().getColorStateList(R.color.show_details_favorite_on));
+        } else {
+            Log.d("aaaaaaa", "nothign");
+            mFavoriteButton.setImageResource(R.drawable.show_details_favorite_off);
+            mFavoriteButton.setBackgroundTintList(getResources().getColorStateList(R.color.show_details_favorite_off));
+        }
     }
 }

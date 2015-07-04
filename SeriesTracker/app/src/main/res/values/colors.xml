@@ -30,4 +30,7 @@
     <!-- Base Loading -->
     <color name="base_loading_container_background">#99333333</color>
 
+    <color name="show_details_favorite_on">#F57C00</color>
+    <color name="show_details_favorite_off">#9B9B9B</color>
+
 </resources>
