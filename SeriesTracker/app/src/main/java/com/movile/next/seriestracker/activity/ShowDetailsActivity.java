@@ -1,5 +1,9 @@
 package com.movile.next.seriestracker.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +28,9 @@ import com.movile.next.seriestracker.model.Season;
 import com.movile.next.seriestracker.model.Show;
 import com.movile.next.seriestracker.presenter.ShowDetailsPresenter;
 import com.movile.next.seriestracker.view.ShowDetailsView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ShowDetailsActivity extends BaseNavigationToolbarActivity implements ShowInfoFragment.OnFragmentInteractionListener, ShowSeasonFragment.OnFragmentInteractionListener, ShowDetailsView {
@@ -57,6 +65,49 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
         configure();
     }
 
+    List<Animator> heartBeat() {
+        AnimatorSet togetherSet = new AnimatorSet();
+
+        List<Animator> list = new ArrayList<Animator>();
+
+        togetherSet.playTogether(ObjectAnimator.ofFloat(mFavoriteButton, "scaleX", 1.0f, 1.5f), ObjectAnimator.ofFloat(mFavoriteButton, "scaleY", 1.0f, 1.5f));
+        togetherSet.setDuration(50);
+        list.add(togetherSet);
+
+        togetherSet = new AnimatorSet();
+        togetherSet.playTogether(ObjectAnimator.ofFloat(mFavoriteButton, "scaleX", 1.5f, 0.5f), ObjectAnimator.ofFloat(mFavoriteButton, "scaleY", 1.5f, 0.5f));
+        togetherSet.setDuration(100);
+        list.add(togetherSet);
+
+        togetherSet = new AnimatorSet();
+        togetherSet.playTogether(ObjectAnimator.ofFloat(mFavoriteButton, "scaleX", 0.5f, 1f), ObjectAnimator.ofFloat(mFavoriteButton, "scaleY", 0.5f, 1f));
+        togetherSet.setDuration(50);
+        list.add(togetherSet);
+
+        return list;
+    }
+
+    private void animateHeart() {
+        AnimatorSet sequentialSet = new AnimatorSet();
+        AnimatorSet togetherSet = new AnimatorSet();
+
+        List<Animator> list = new ArrayList<Animator>();
+        list.addAll(heartBeat());
+        list.addAll(heartBeat());
+
+
+        sequentialSet.playSequentially(heartBeat());
+        ObjectAnimator animator = ObjectAnimator.ofFloat(mFavoriteButton, "rotation", 360f);
+        animator.setDuration(600);
+        //animator.setRepeatCount(ValueAnimator.INFINITE);
+
+        togetherSet.playTogether(sequentialSet, animator);
+
+        togetherSet.start();
+
+    }
+
+
     private void configure() {
         //PagerTabStrip tabs = (PagerTabStrip)findViewById(R.id.show_details_pager_tab);
         //tabs.setTextColor(getResources().getColor(R.color.default_textColor_first));
@@ -72,6 +123,7 @@ public class ShowDetailsActivity extends BaseNavigationToolbarActivity implement
             public void onClick(View v) {
                 if (mShow != null) {
                     mPresenter.setFavorite(mShow.ids().slug(), mShow.title());
+                    animateHeart();
                 }
             }
         });
