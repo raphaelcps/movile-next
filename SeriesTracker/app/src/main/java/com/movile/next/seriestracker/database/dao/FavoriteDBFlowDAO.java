@@ -1,5 +1,6 @@
 package com.movile.next.seriestracker.database.dao;
 
+import android.database.Cursor;
 import android.util.Log;
 
 import com.movile.next.seriestracker.database.dbflow.entity.FavoriteEntity;
@@ -40,5 +41,10 @@ public class FavoriteDBFlowDAO implements IFavoriteDAO {
             return new Favorite(entity.slug(), entity.title());
         }
         return null;
+    }
+
+    @Override
+    public Cursor all() {
+        return new Select().from(FavoriteEntity.class).queryCursorList().getCursor();
     }
 }

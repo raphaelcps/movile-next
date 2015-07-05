@@ -1,5 +1,7 @@
 package com.movile.next.seriestracker.database.dao;
 
+import android.database.Cursor;
+
 import com.movile.next.seriestracker.model.Favorite;
 
 /**
@@ -10,4 +12,5 @@ public interface IFavoriteDAO {
     public void save(Favorite favorite);
     public void delete(String slug);
     public Favorite query(String slug);
+    Cursor all();
 }

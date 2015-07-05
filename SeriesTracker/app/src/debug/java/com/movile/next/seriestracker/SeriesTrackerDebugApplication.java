@@ -14,12 +14,12 @@ public class SeriesTrackerDebugApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        FlowManager.init(this);
-
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                         .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                         .build());
+
+        FlowManager.init(this);
     }
 }

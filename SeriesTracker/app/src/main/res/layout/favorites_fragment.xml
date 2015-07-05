@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.movile.next.seriestracker.fragment.FavoritesFragment">
+
+    <include layout="@layout/favorites_header"/>
+
+    <ListView
+        android:layout_marginBottom="23dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="16dp"
+        android:dividerHeight="29dp"
+        android:id="@+id/favorite_shows_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>

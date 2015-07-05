@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.movile.next.seriestracker.R;
+import com.movile.next.seriestracker.activity.base.BaseNavigationDrawerActivity;
 import com.movile.next.seriestracker.activity.base.BaseNavigationToolbarActivity;
 import com.movile.next.seriestracker.adapter.ShowsAdapter;
 import com.movile.next.seriestracker.receiver.ShowUpdateReceiver;
@@ -24,7 +25,7 @@ import com.movile.next.seriestracker.view.ShowsView;
 import java.util.List;
 
 
-public class PopularShowsActivity extends BaseNavigationToolbarActivity implements ShowsView, ShowsAdapter.ShowClickListener {
+public class PopularShowsActivity extends BaseNavigationDrawerActivity implements ShowsView, ShowsAdapter.ShowClickListener {
 
     private ShowsPresenter presenter;
     private ShowsAdapter mAdapter;
@@ -56,7 +57,7 @@ public class PopularShowsActivity extends BaseNavigationToolbarActivity implemen
     }
 
     private void configure() {
-        configureToolbar();
+        configureNavigation();
 
         showLoading();
 

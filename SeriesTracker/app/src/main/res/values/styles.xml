@@ -107,6 +107,15 @@
         <item name="android:background">@color/base_navigation_toolbar_transparent_background</item>
     </style>
 
+    <style name="AppTheme.Base.Navigation.Drawer"></style>
+
+    <style name="AppTheme.Base.Navigation.Drawer.Content">
+        <item name="android:layout_width">@dimen/base_navigation_drawer_content_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:background">@color/base_navigation_drawer_content_background</item>
+    </style>
+
     <!-- Base Loading -->
     <style name="AppTheme.Base.Loading"></style>
 
